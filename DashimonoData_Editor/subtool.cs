@@ -12,12 +12,8 @@ namespace DashimonoData_Editor
         {
             if (mozi == null) return 0;
             int result;
-            try 
-            {
-                int.TryParse(mozi,out result);
-            }
-            catch 
-            {
+
+            if(!int.TryParse(mozi, out result)){
                 result = -1;
             }
             return result;

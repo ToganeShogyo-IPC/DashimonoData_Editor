@@ -31,6 +31,7 @@ namespace DashimonoData_Editor
         {
             globalVar.dashimono = new List<DashimonoDataFormat>();
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            データを保存するToolStripMenuItem.Enabled = false;
         }
 
         private void データを開くToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace DashimonoData_Editor
                     }
                     ReDrawList();
                     this.Text = $"出し物データファイル編集ソフト - {Path.GetFileName(globalVar.filepath)}";
+                    データを保存するToolStripMenuItem.Enabled = true;
                 }
                 catch
                 {
@@ -68,32 +70,19 @@ namespace DashimonoData_Editor
 
         private void データを保存するToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "*.json";
-            sfd.Filter = "DashimonoDataFile(*.json)|*.json";
-            sfd.Title = "出し物データの保存先を指定してください。";
-            if(sfd.ShowDialog() == DialogResult.OK)
+            try
             {
-                try
+                using (var sw = new StreamWriter(globalVar.filepath,false, Encoding.UTF8))
                 {
-                    Stream stream = sfd.OpenFile();
-                    using (var sw = new StreamWriter(stream,Encoding.UTF8))
-                    {
-                        var js_savedata = JsonConvert.SerializeObject(globalVar.dashimono, Formatting.Indented);
-                        sw.Write(js_savedata);
-                        sw.Close();
-                    }
-                    stream.Close();
-                    this.Text = $"出し物データファイル編集ソフト - {Path.GetFileName(sfd.FileName)}";
+                    var js_savedata = JsonConvert.SerializeObject(globalVar.dashimono, Formatting.Indented);
+                    sw.Write(js_savedata);
+                    sw.Close();
                 }
-                catch
-                {
-                    MessageBox.Show($"エラー: \n\rファイルの保存に失敗しました。\r\nファイルの場所を確認して、もう一度お試しください。(E01)", "データ保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
-                }
+                this.Text = $"出し物データファイル編集ソフト - {Path.GetFileName(globalVar.filepath)}";
             }
-            else
+            catch
             {
-                MessageBox.Show($"エラー: \n\rファイルが指定されませんでした。\r\nもう一度やり直してください。(E01)", "データ未指定", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                MessageBox.Show($"エラー: \n\rファイルの保存に失敗しました。\r\nファイルの場所を確認して、もう一度お試しください。(E02)", "データ保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
         }
 
@@ -225,6 +214,37 @@ namespace DashimonoData_Editor
             textBox1.Text = "";
             textBox2.Text = "";
             numericUpDown1.Value = 0;
+        }
+
+        private void 名前を付けて保存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "*.json";
+            sfd.Filter = "DashimonoDataFile(*.json)|*.json";
+            sfd.Title = "出し物データの保存先を指定してください。";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Stream stream = sfd.OpenFile();
+                    using (var sw = new StreamWriter(stream, Encoding.UTF8))
+                    {
+                        var js_savedata = JsonConvert.SerializeObject(globalVar.dashimono, Formatting.Indented);
+                        sw.Write(js_savedata);
+                        sw.Close();
+                    }
+                    stream.Close();
+                    this.Text = $"出し物データファイル編集ソフト - {Path.GetFileName(sfd.FileName)}";
+                }
+                catch
+                {
+                    MessageBox.Show($"エラー: \n\rファイルの保存に失敗しました。\r\nファイルの場所を確認して、もう一度お試しください。(E02)", "データ保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                }
+            }
+            else
+            {
+                MessageBox.Show($"エラー: \n\rファイルが指定されませんでした。\r\nもう一度やり直してください。(E01)", "データ未指定", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+            }
         }
     }
 }

@@ -187,39 +187,40 @@
             // データを開くToolStripMenuItem
             // 
             this.データを開くToolStripMenuItem.Name = "データを開くToolStripMenuItem";
-            this.データを開くToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.データを開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.データを開くToolStripMenuItem.Text = "データを開く";
             this.データを開くToolStripMenuItem.Click += new System.EventHandler(this.データを開くToolStripMenuItem_Click);
             // 
             // データを保存するToolStripMenuItem
             // 
             this.データを保存するToolStripMenuItem.Name = "データを保存するToolStripMenuItem";
-            this.データを保存するToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.データを保存するToolStripMenuItem.Text = "データを保存する";
+            this.データを保存するToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.データを保存するToolStripMenuItem.Text = "上書き保存する";
             this.データを保存するToolStripMenuItem.Click += new System.EventHandler(this.データを保存するToolStripMenuItem_Click);
             // 
             // 名前を付けて保存ToolStripMenuItem
             // 
             this.名前を付けて保存ToolStripMenuItem.Name = "名前を付けて保存ToolStripMenuItem";
-            this.名前を付けて保存ToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.名前を付けて保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.名前を付けて保存ToolStripMenuItem.Text = "名前を付けて保存";
+            this.名前を付けて保存ToolStripMenuItem.Click += new System.EventHandler(this.名前を付けて保存ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // ファイルを閉じるToolStripMenuItem
             // 
             this.ファイルを閉じるToolStripMenuItem.Name = "ファイルを閉じるToolStripMenuItem";
-            this.ファイルを閉じるToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.ファイルを閉じるToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ファイルを閉じるToolStripMenuItem.Text = "データを閉じる";
             this.ファイルを閉じるToolStripMenuItem.Click += new System.EventHandler(this.ファイルを閉じるToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
             // 
             this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.終了ToolStripMenuItem.Text = "終了";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
             // 
