@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -214,6 +207,7 @@ namespace DashimonoData_Editor
             textBox1.Text = "";
             textBox2.Text = "";
             numericUpDown1.Value = 0;
+            ActiveControl = textBox1;
         }
 
         private void 名前を付けて保存ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -244,6 +238,30 @@ namespace DashimonoData_Editor
             else
             {
                 MessageBox.Show($"エラー: \n\rファイルが指定されませんでした。\r\nもう一度やり直してください。(E01)", "データ未指定", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                ActiveControl = textBox2;
+            }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ActiveControl = numericUpDown1;
+            }
+        }
+
+        private void numericUpDown1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ActiveControl = button1;
             }
         }
     }
